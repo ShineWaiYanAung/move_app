@@ -1,4 +1,4 @@
- class VideoPouplarData{
+ class VideoPopularData{
   static List<VideoInfo> vidoePopularinfro =[
     VideoInfo(title: "Coda",path:  "assets/noimage.png",year:  2023),
     VideoInfo(title: "Coda",path:  "assets/noimage.png",year:  2023),

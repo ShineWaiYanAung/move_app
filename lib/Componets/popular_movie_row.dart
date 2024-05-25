@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../Screen/movie.detail.dart';
 import '../Theme/colors.dart';
 import '../VidoeData.dart';
 class PoplarMovieWidgetRow extends StatelessWidget {
@@ -17,19 +18,24 @@ class PoplarMovieWidgetRow extends StatelessWidget {
           itemCount: 2,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            final video = VideoPouplarData.vidoePopularinfro[index];
+            final video = VideoPopularData.vidoePopularinfro[index];
             return Container(
               padding: EdgeInsets.only(right: 10, left: 10, top: 20),
               child: Column(
                 children: <Widget>[
                   AspectRatio(
                     aspectRatio: 1 / 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                              image: AssetImage(video.path),
-                              fit: BoxFit.fill),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetail(movie: video,),));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: AssetImage(video.path),
+                                fit: BoxFit.fill),
+                        ),
                       ),
                     ),
                   ),
