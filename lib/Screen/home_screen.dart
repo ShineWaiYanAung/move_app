@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
                     height: 20,
                   ),
 
-                  ///Popular Moive Block1
+                  ///Popular Movie Block1
                   SeeAllWidget(
                     title: 'Popular',
                     onPressed: () {},
@@ -52,7 +52,7 @@ class MyHomePage extends StatelessWidget {
                   ),
 
                   ///Popular Movie Black2
-                  const PoplarMovieWidgetRow(),
+                  const PopularMovieWidgetRow(),
                   SizedBox(
                     height: 10,
                   ),

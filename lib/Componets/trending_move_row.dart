@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_project/Componets/see_all.dart';
+import 'package:movie_project/Screen/movie.detail.dart';
 
 import '../Theme/colors.dart';
 import '../VidoeData.dart';
@@ -30,12 +31,15 @@ class TrendingVideoWidget extends StatelessWidget {
                       children: <Widget>[
                         AspectRatio(
                           aspectRatio: 1 / 1,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image: AssetImage(video.path),
-                                  fit: BoxFit.fill),
+                          child: InkWell(
+                            onTap: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => MovieDetail(movie: video),)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                    image: AssetImage(video.path),
+                                    fit: BoxFit.fill),
+                              ),
                             ),
                           ),
                         ),

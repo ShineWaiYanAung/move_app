@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../Screen/movie.detail.dart';
 import '../Theme/colors.dart';
 import '../VidoeData.dart';
-class PoplarMovieWidgetRow extends StatelessWidget {
-  const PoplarMovieWidgetRow({
+class PopularMovieWidgetRow extends StatelessWidget {
+  const PopularMovieWidgetRow({
     super.key,
   });
 

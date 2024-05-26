@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_project/Componets/movie_trailer_buttons.dart';
 
 import 'Screen/home_screen.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: const MyHomePage()
     );
   }
 }
