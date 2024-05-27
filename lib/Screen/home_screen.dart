@@ -13,52 +13,58 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    List <Widget> movieRows=
+    [
+      PopularMovieWidgetRow(),
+      TrendingVideoWidgetRow(),
+      TrendingVideoWidgetRow(),
+      TrendingVideoWidgetRow(),
+    ];
     return Scaffold(
       backgroundColor: AppColor.homepage,
-      body: SafeArea(
+      body:  SafeArea(
         child: Stack(
           children: [
-            Padding(
+            ///Top icons
+            const Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 30.0,
                 vertical: 15,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ///Top icons
-                  const SearchMenuIcon(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Movie",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 30,
-                        color: AppColor.textColor),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  ///Popular Movie Block1
-                  SeeAllWidget(
-                    title: 'Popular',
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  ///Popular Movie Black2
-                  const PopularMovieWidgetRow(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  //TrendingVideoWidget
-                  TrendingVideoWidget(),
-                ],
+              child: SearchMenuIcon(),
+            ),
+            Positioned(
+              top: 50,
+              left: 25,
+              child: Text(
+                "Movie",
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 30,
+                    color: AppColor.textColor),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 90,
+                right: 30,
+                left: 20
+              ),
+              child: ListView(
+                children: movieRows.map((movieData){
+                  return    Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(),
+                      width: double.infinity,
+                      height: screenHeight* 0.3,
+                      child: movieData,
+                    ),
+                  );
+                }).toList(),
               ),
             ),
             ///NavBottom
@@ -69,3 +75,9 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+

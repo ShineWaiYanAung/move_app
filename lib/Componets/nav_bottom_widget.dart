@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:movie_project/Screen/home_screen.dart';
+import 'package:movie_project/Screen/screen_two.dart';
+import 'package:movie_project/Screen/thirdPageg.dart';
 
 class NavBottomWidget extends StatefulWidget {
   const NavBottomWidget({
@@ -19,6 +22,12 @@ class _NavBottomWidgetState extends State<NavBottomWidget> {
     Icons.person,
   ];
   int selectedIndex = 0;
+  List<Widget> pages =[
+    MyHomePage(),
+    SecondPage(),
+    Thirdpage(),
+    Thirdpage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +59,12 @@ class _NavBottomWidgetState extends State<NavBottomWidget> {
                       child: IconButton(
                           onPressed: () => setState(() {
                                 selectedIndex = index;
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => pages[index],));
                               }),
                           icon: Icon(
                             icon,
                             size: 35,
-                            color: isSelected? Colors.blueAccent : Colors.white.withOpacity(0.8),
+                            color: isSelected? Colors.blueAccent : Colors.black.withOpacity(0.8),
                           )),
                     ),
                   );
