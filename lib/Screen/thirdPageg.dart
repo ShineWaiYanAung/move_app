@@ -4,10 +4,8 @@ class Thirdpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("3"),
-      ),
+    return Center(
+      child: Text("3",style: TextStyle(color: Colors.white)),
     );
   }
 }
