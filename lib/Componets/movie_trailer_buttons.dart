@@ -8,6 +8,8 @@ class VideoTrailerButtons extends StatefulWidget {
 }
 
 class _VideoTrailerButtonsState extends State<VideoTrailerButtons> {
+
+
   int selectedcolor = 0;
   List<String> videodata = [
     "Details",

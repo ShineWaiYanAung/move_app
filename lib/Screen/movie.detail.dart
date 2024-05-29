@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:movie_project/VidoeData.dart';
 
 import '../Componets/movie_data.dart';
@@ -7,10 +10,40 @@ import '../Componets/movie_information.dart';
 import '../Componets/movie_trailer_buttons.dart';
 import '../Theme/colors.dart';
 
-class MovieDetail extends StatelessWidget {
+class MovieDetail extends StatefulWidget  {
   final VideoInfo movie;
   const MovieDetail({super.key, required this.movie});
 
+  @override
+  State<MovieDetail> createState() => _MovieDetailState();
+}
+
+class _MovieDetailState extends State<MovieDetail> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  bool showResult = false;
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    )..repeat();
+    _timecontroller();
+  }
+
+  void _timecontroller() {
+    Timer(const Duration(seconds: 3), () {
+      setState(() {
+        showResult = true;
+        _controller.dispose();
+      });
+    });
+  }
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +80,22 @@ class MovieDetail extends StatelessWidget {
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: showResult ? Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
-                            image: AssetImage(movie.path), fit: BoxFit.fill)),
-                  ),
+                            image: AssetImage(widget.movie.path), fit: BoxFit.fill)),
+                  ):Center(
+                child: LottieBuilder.asset(
+                "json/videoAnimation.json",
+                  controller: _controller,
+                  width: 250,
+                  height: 250,
                 ),
               ),
+
+        ),
+              ) ,
               Flexible(
                 flex: 1,
                 child: Container(
@@ -66,7 +107,7 @@ class MovieDetail extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            movie.title,
+                            widget.movie.title,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 30,
@@ -91,15 +132,15 @@ class MovieDetail extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MovieInformation(
-                            data: movie.language.toString(),
+                            data:  widget.movie.language.toString(),
                             iconData: Icons.language,
                           ),
                           MovieInformation(
-                            data: movie.duration.toString(),
+                            data:  widget.movie.duration.toString(),
                             iconData: Icons.schedule,
                           ),
                           MovieInformation(
-                            data: movie.review.toString(),
+                            data:  widget.movie.review.toString(),
                             iconData: Icons.star,
                           ),
                         ],
@@ -116,9 +157,9 @@ class MovieDetail extends StatelessWidget {
                         height: 20,
                       ),
                       MovieGenre(
-                        movieType1: movie.gene.type1,
-                        movieType2: movie.gene.type2,
-                        movieType3: movie.gene.type3,
+                        movieType1:  widget.movie.gene.type1,
+                        movieType2:  widget.movie.gene.type2,
+                        movieType3:  widget.movie.gene.type3,
                       ),
 
                       ///MovieMpaaRating
@@ -133,11 +174,11 @@ class MovieDetail extends StatelessWidget {
                       ),
                       MovieData(
                         data1: 'DIRECTOR:',
-                        data2: movie.director.toString(),
+                        data2:  widget.movie.director.toString(),
                       ),
                     ],
                   ),
-                ),
+                )
               )
             ],
           ),
@@ -146,3 +187,4 @@ class MovieDetail extends StatelessWidget {
     );
   }
 }
+
